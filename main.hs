@@ -6,9 +6,6 @@ import Control.Monad.Trans
 
 import RandomShuffle
 
-data Guest = Guest { firstName, lastName :: String }
-  deriving (Show, Eq)
-
 type Answer = String
 data Question = Question { description :: String, answers :: [Answer] }
                     deriving (Show, Eq)

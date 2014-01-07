@@ -1,0 +1,17 @@
+﻿<test>
+	<question>
+		<description>What is the capital of France?</description>
+		<answer1>Paris</answer1>
+		<answer2>Lisbon</answer2>
+		<answer3>Warsaw</answer3>
+		<answer4>Moscow</answer4>
+	</question>
+	<question>
+		<description>What is 2+2?</description>
+		<answer1>4</answer1>
+		<answer2>5</answer2>
+		<answer3>6</answer3>
+		<answer4>2</answer4>
+	</question>
+	
+</test>

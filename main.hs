@@ -66,16 +66,17 @@ testLoop test = do
     -- shuffle the answers
     answerSet <- hoistState $ randomizeAnswers q
     -- print the message to the user
-    liftIO $ print $ description q
-    liftIO $ printAnswerSet answerSet 
-    -- read the choice
-    a <- liftIO getLine 
-    let choice = read a :: Int
+    liftIO $ do
+        print $ description q
+        printAnswerSet answerSet 
+        -- read the choice
+        a <- getLine 
+        let choice = read a :: Int
    
-    -- TODO: error checking
-    if (fst $ answerSet !! (choice - 1))
-        then liftIO $ print "OK!"
-        else liftIO $ print "NOT OK!"
+        -- TODO: error checking
+        if fst $ answerSet !! (choice - 1)
+            then print "OK!"
+            else print "Not OK!"
 
     testLoop test
 

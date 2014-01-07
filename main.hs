@@ -39,9 +39,9 @@ loadFile = runX (readDocument [withValidate no] "sip-simple.xml" >>> getQuestion
 pickRandomQuestion :: Test -> State StdGen Question
 pickRandomQuestion test = do
     gen <- get
-    let (num, gen2) = randomR (1, length test) gen
+    let (num, gen2) = randomR (0, length test - 1) gen
     put gen2
-    return (test !! (num - 1))
+    return (test !! num)
     
 randomizeAnswers :: Question -> State StdGen AnswerSet
 randomizeAnswers q = do

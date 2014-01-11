@@ -5,6 +5,7 @@ import Control.Monad.Trans.State.Lazy
 import Control.Monad.Trans
 
 import RandomShuffle
+import Utils
 
 type Answer = String
 data Question = Question { description :: String, answers :: [Answer] }
@@ -52,9 +53,10 @@ printAnswerSet :: AnswerSet -> IO ()
 printAnswerSet answSet = do
     sequence_ $
         map (\(num, (correctness, text)) ->
-            print $ (show num) ++ ". " ++ text)
+            putStrLn $ (show num) ++ ". " ++ text)
         numberedAnswSet
     where numberedAnswSet = zip [1..] answSet
+
 
 testLoop :: Test -> StateT StdGen IO ()
 testLoop test = do
@@ -64,16 +66,15 @@ testLoop test = do
     answerSet <- hoistState $ randomizeAnswers q
     -- print the message to the user
     liftIO $ do
-        print $ description q
+        putStrLn $ description q
         printAnswerSet answerSet 
         -- read the choice
-        a <- getLine 
-        let choice = read a :: Int
+        choice <- askForIntR (1,4)
    
         -- TODO: error checking
         if fst $ answerSet !! (choice - 1)
-            then print "OK!"
-            else print "Not OK!"
+            then putStrLn "OK!"
+            else putStrLn "Not OK!"
 
     testLoop test
 
